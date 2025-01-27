@@ -11,12 +11,15 @@ import cors from "cors";
 dotenv.config()
 
 const app = express();
-
-app.use(cors(process.env.CLIENT_URL));
+const corsOptions = {
+  origin: process.env.CLIENT_URL, // Replace this with your client origin
+  credentials: true, // Include this if you are using cookies
+}; 
+app.use(cors(corsOptions));
 app.use(clerkMiddleware());
 app.use("/webhooks", webhookRouter);
 app.use(express.json());
-
+ 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(

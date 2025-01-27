@@ -9,5 +9,4 @@ router.post(
   bodyParser.raw({ type: "application/json" }),
   clerkWebHook
 );
-
 export default router;
